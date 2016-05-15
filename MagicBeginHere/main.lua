@@ -60,30 +60,3 @@ function anime:touch(event)
 end
 
 anime:addEventListener("touch", anime)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
