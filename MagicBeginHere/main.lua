@@ -26,6 +26,7 @@ local background = display.newImage("background.png", display.contentCenterX, di
 
 -- Set Tamagotchi
 local tamagotchiOption = {
+<<<<<<< HEAD
 	width = 300,
 	height = 300,
 	numFrames = 16,
@@ -34,10 +35,19 @@ local tamagotchiOption = {
 	sheetContentHeight = 600,
 
 
+=======
+	width = 100,
+	height = 98,
+	numFrames = 15,
+>>>>>>> f23a223... Add animation changes, and timer to default animation
 
 }
 local tamagotchi = graphics.newImageSheet("egg.png", tamagotchiOption)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f23a223... Add animation changes, and timer to default animation
 -- Setup seqences for each animation
 local sequence = {
 	{
@@ -56,9 +66,19 @@ local sequence = {
 		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
+	},
+
+	{
+		name = "happy",
+		start = 12,
+		count = 3,
+		time = 1000,
+		loopcount = 0,
+		loopdirection = "forward"
 	}
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 -- Setuo anime location
 local anime = display.newSprite(tamagotchi, sequence)
@@ -81,24 +101,42 @@ function anime:touch(event)
 		anime:play()
 		timer.performWithDelay(1600, default) -- reset animation to default
 =======
+=======
+-- Setuo anime location
+>>>>>>> f23a223... Add animation changes, and timer to default animation
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
 anime.y = 250
 anime:play()
 
 
--- Add interaction
+-- Set default animation
+function default(event)
+	anime:setSequence("normal")
+	anime:play()
+end
 
+-- Set interaction when touch
 function anime:touch(event)
 	if event.phase == "began" then
+<<<<<<< HEAD
 		print "Touch"
 >>>>>>> 71fc3a6... Add interaction, remove icons
+=======
+		anime:setSequence("happy")
+		anime:play()
+		timer.performWithDelay(1000, default) -- reset animation to default
+>>>>>>> f23a223... Add animation changes, and timer to default animation
 		return true
 	end
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 -- Add even listener for touch event on anime
 =======
 >>>>>>> 71fc3a6... Add interaction, remove icons
+=======
+-- Add even listener for touch event on anime
+>>>>>>> f23a223... Add animation changes, and timer to default animation
 anime:addEventListener("touch", anime)
