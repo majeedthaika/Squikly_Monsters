@@ -59,6 +59,7 @@ local sequence = {
 	}
 }
 
+<<<<<<< HEAD
 -- Setuo anime location
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
@@ -79,9 +80,25 @@ function anime:touch(event)
 		anime:setSequence("happy")
 		anime:play()
 		timer.performWithDelay(1600, default) -- reset animation to default
+=======
+local anime = display.newSprite(tamagotchi, sequence)
+anime.x = display.contentCenterX
+anime.y = 250
+anime:play()
+
+
+-- Add interaction
+
+function anime:touch(event)
+	if event.phase == "began" then
+		print "Touch"
+>>>>>>> 71fc3a6... Add interaction, remove icons
 		return true
 	end
 end
 
+<<<<<<< HEAD
 -- Add even listener for touch event on anime
+=======
+>>>>>>> 71fc3a6... Add interaction, remove icons
 anime:addEventListener("touch", anime)
