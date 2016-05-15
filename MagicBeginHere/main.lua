@@ -43,7 +43,20 @@ local sequence = {
 		loopdirection = "forward"
 	}
 }
+
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
 anime.y = 250
 anime:play()
+
+
+-- Add interaction
+
+function anime:touch(event)
+	if event.phase == "began" then
+		print "Touch"
+		return true
+	end
+end
+
+anime:addEventListener("touch", anime)
