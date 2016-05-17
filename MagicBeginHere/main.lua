@@ -122,7 +122,7 @@ function anime:touch(event)
 >>>>>>> f23a223... Add animation changes, and timer to default animation
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
-anime.y = 250
+anime.y = 225
 anime:scale(0.5, 0.5)
 anime:play()
 
