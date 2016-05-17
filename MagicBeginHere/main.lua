@@ -87,7 +87,7 @@ local sequence = {
 	{
 		name = "happy",
 		start = 6,
-		count = 16,
+		count = 8,
 		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
