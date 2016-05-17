@@ -26,30 +26,34 @@ local background = display.newImage("background.png", display.contentCenterX, di
 
 -- Set Tamagotchi
 local tamagotchiOption = {
-	width = 100,
-	height = 98,
-	numFrames = 15,
+	width = 300,
+	height = 300,
+	numFrames = 16,
+
+	sheetContentWidth = 2400,
+	sheetContentHeight = 600,
+
+
 
 }
-local tamagotchi = graphics.newImageSheet("bird.png", tamagotchiOption)
-
+local tamagotchi = graphics.newImageSheet("egg.png", tamagotchiOption)
 
 -- Setup seqences for each animation
 local sequence = {
 	{
 		name = "normal",
 		start = 1,
-		count = 5,
-		time = 1000,
+		count = 8,
+		time = 1600*1.5,
 		loopcount = 0,
 		loopdirection = "forward"
 	},
 
 	{
 		name = "happy",
-		start = 12,
-		count = 3,
-		time = 1000,
+		start = 6,
+		count = 16,
+		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
 	}
@@ -59,6 +63,7 @@ local sequence = {
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
 anime.y = 250
+anime:scale(0.5, 0.5)
 anime:play()
 
 
@@ -73,7 +78,7 @@ function anime:touch(event)
 	if event.phase == "began" then
 		anime:setSequence("happy")
 		anime:play()
-		timer.performWithDelay(1000, default) -- reset animation to default
+		timer.performWithDelay(1600, default) -- reset animation to default
 		return true
 	end
 end
