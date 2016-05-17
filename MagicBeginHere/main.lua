@@ -11,7 +11,7 @@ display.setStatusBar(display.HiddenStatusBar)
 
 -- Set Title
 local titleOption = {
-	text = "Tamagotchi v0.1",
+	text = "Tamagotchi v0.11",
 	x = display.contentCenterX,
 	y = 24,
 	fontSize = 24,
@@ -52,7 +52,7 @@ local sequence = {
 	{
 		name = "happy",
 		start = 6,
-		count = 16,
+		count = 8,
 		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
