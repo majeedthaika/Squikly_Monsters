@@ -27,12 +27,16 @@ local background = display.newImage("background.png", display.contentCenterX, di
 -- Set Tamagotchi
 local tamagotchiOption = {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a5d812a... Add touch tama Happy, update tama pic
 	width = 300,
 	height = 300,
 	numFrames = 16,
 
 	sheetContentWidth = 2400,
 	sheetContentHeight = 600,
+<<<<<<< HEAD
 
 
 =======
@@ -43,11 +47,20 @@ local tamagotchiOption = {
 
 }
 local tamagotchi = graphics.newImageSheet("egg.png", tamagotchiOption)
+=======
+
+>>>>>>> a5d812a... Add touch tama Happy, update tama pic
 
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 >>>>>>> f23a223... Add animation changes, and timer to default animation
+=======
+}
+local tamagotchi = graphics.newImageSheet("egg.png", tamagotchiOption)
+
+>>>>>>> a5d812a... Add touch tama Happy, update tama pic
 -- Setup seqences for each animation
 local sequence = {
 	{
@@ -55,6 +68,7 @@ local sequence = {
 		start = 1,
 		count = 8,
 		time = 1600*1.5,
+<<<<<<< HEAD
 		loopcount = 0,
 		loopdirection = "forward"
 	},
@@ -64,15 +78,17 @@ local sequence = {
 		start = 6,
 		count = 8,
 		time = 1600,
+=======
+>>>>>>> a5d812a... Add touch tama Happy, update tama pic
 		loopcount = 0,
 		loopdirection = "forward"
 	},
 
 	{
 		name = "happy",
-		start = 12,
-		count = 3,
-		time = 1000,
+		start = 6,
+		count = 16,
+		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
 	}
@@ -107,6 +123,7 @@ function anime:touch(event)
 local anime = display.newSprite(tamagotchi, sequence)
 anime.x = display.contentCenterX
 anime.y = 250
+anime:scale(0.5, 0.5)
 anime:play()
 
 
@@ -125,8 +142,12 @@ function anime:touch(event)
 =======
 		anime:setSequence("happy")
 		anime:play()
+<<<<<<< HEAD
 		timer.performWithDelay(1000, default) -- reset animation to default
 >>>>>>> f23a223... Add animation changes, and timer to default animation
+=======
+		timer.performWithDelay(1600, default) -- reset animation to default
+>>>>>>> a5d812a... Add touch tama Happy, update tama pic
 		return true
 	end
 end
