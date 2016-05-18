@@ -78,8 +78,31 @@ function default(event)
 	anime:play()
 end
 
--- Set interaction when touch
+-- =====================
+
+-- Set Icons
+local icon_1 = display.newImage("tmpIcon.png", anime.x, anime.y)
+icon_1:scale(0.05, 0.05)
+icon_1.alpha = 0
+
+
+-- =====================
+
+-- Set show options when touch
 function anime:touch(event)
+	if event.phase == "began" then
+		if icon_1.alpha == 0 then
+			transition.to(icon_1, {x = anime.x + 75, y = anime.y - 75, 
+				alpha = 1, time = 250})
+		else
+			transition.to(icon_1, {x = anime.x, y = anime.y, 
+				alpha = 0, time = 250})
+		end
+	end
+end
+
+-- Set Happy when feed
+function icon_1:touch(event)
 	if event.phase == "began" then
 		anime:setSequence("happy")
 		anime:play()
@@ -90,3 +113,9 @@ end
 
 -- Add even listener for touch event on anime
 anime:addEventListener("touch", anime)
+icon_1:addEventListener("touch", icon_1)
+
+
+
+
+
