@@ -9,6 +9,11 @@
 -- Hide status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+-- Hide android navigation bar
+native.setProperty( "androidSystemUiVisibility", "immersiveSticky" )
+
+
+
 -- Set Title
 local titleOption = {
 	text = "Tamagotchi v0.11",
