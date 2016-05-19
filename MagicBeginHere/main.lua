@@ -88,16 +88,31 @@ icon_1.alpha = 0
 
 -- =====================
 
--- Set show options when touch
+-- Set global for icons
+icons = {icon_1}
+xAxis = {75}
+yAxis = {75}
+-- Set hide/show icons
+function hideShowIcons()
+		if icons[1].alpha == 0 then
+			for i = 1, 1 do
+				transition.to(icons[i], 
+					{x = anime.x + xAxis[i], y = anime.y - yAxis[i],
+					alpha = 1, time = 250})
+			end
+		else
+			for i = 1, 1 do
+				transition.to(icons[i], 
+					{x = anime.x, y = anime.y,
+					alpha = 0, time = 250})
+			end	
+		end		
+end
+
+-- Set reaction when touch
 function anime:touch(event)
 	if event.phase == "began" then
-		if icon_1.alpha == 0 then
-			transition.to(icon_1, {x = anime.x + 75, y = anime.y - 75, 
-				alpha = 1, time = 250})
-		else
-			transition.to(icon_1, {x = anime.x, y = anime.y, 
-				alpha = 0, time = 250})
-		end
+		hideShowIcons()
 	end
 end
 
@@ -107,6 +122,7 @@ function icon_1:touch(event)
 		anime:setSequence("happy")
 		anime:play()
 		timer.performWithDelay(1600, default) -- reset animation to default
+		hideShowIcons()
 		return true
 	end
 end
