@@ -18,7 +18,7 @@ local widget = require( "widget" )
 
 -- Set Title
 local titleOption = {
-	text = "Tamagotchi v0.13",
+	text = "Tamagotchi v0.14",
 	x = display.contentCenterX,
 	y = 24,
 	fontSize = 24,
@@ -28,8 +28,28 @@ local titleOption = {
 local title = display.newText(titleOption)
 
 -- Set Background
-local background = display.newImage("background.png", display.contentCenterX, display.contentCenterY)
+-- local background = display.newImage("background.png", display.contentCenterX, display.contentCenterY)
+local backgroundOption = {
+	width = 500,
+	height = 243,
+	numFrames = 8,
 
+	sheetContentWidth = 4000,
+	sheetContentHeight = 243,
+
+}
+local backgroundSheet = graphics.newImageSheet("bg.png", backgroundOption)
+local backgroundSequence = {
+	start = 1,
+	count = 8,
+	time = 1400,
+	loopcount = 0,
+	loopdirection = "forward"
+}
+local background = display.newSprite(backgroundSheet, backgroundSequence)
+background.x = display.contentCenterX
+background.y = display.contentCenterY
+background:play()
 
 -- Set Tamagotchi
 local tamagotchiOption = {
@@ -93,7 +113,7 @@ local options = {
 local progressSheet = graphics.newImageSheet( "widget-progress-view.png", options )
 
 -- Create the widget
-local progressView = widget.newProgressView(
+local hunger = widget.newProgressView(
     {
         sheet = progressSheet,
         --fillOuterLeftFrame = 1,
@@ -113,23 +133,23 @@ local progressView = widget.newProgressView(
     }
 )
 
--- Set the progress to 50%
-progressView:setProgress( 0.5 )
+-- Set the hunger to 100%
+hunger:setProgress( 1 )
 -- ===========================================================================
 
 
 -- =====================
 
 -- Set Icons
-local icon_1 = display.newImage("tmpIcon.png", anime.x, anime.y)
-icon_1:scale(0.05, 0.05)
-icon_1.alpha = 0
+local feedIcon = display.newImage("tmpIcon.png", anime.x, anime.y)
+feedIcon:scale(0.05, 0.05)
+feedIcon.alpha = 0
 
 
 -- =====================
 
 -- Set global for icons
-icons = {icon_1}
+icons = {feedIcon}
 xAxis = {75}
 yAxis = {75}
 -- Set hide/show icons
@@ -157,20 +177,29 @@ function anime:touch(event)
 end
 
 -- Set Happy when feed
-function icon_1:touch(event)
+function feedIcon:touch(event)
 	if event.phase == "began" then
 		anime:setSequence("happy")
 		anime:play()
 		timer.performWithDelay(1600, default) -- reset animation to default
-		progressView:setProgress(progressView:getProgress() + 0.1)
+		hunger:setProgress(hunger:getProgress() + 0.1)
 		hideShowIcons()
 		return true
 	end
 end
 
+-- Trigger needs
+function needs()
+	hunger:setProgress(hunger:getProgress() - 0.1)
+end
+
+-- Add hunger loop
+timer.performWithDelay(3000, needs, -1)
+
 -- Add even listener for touch event on anime
 anime:addEventListener("touch", anime)
-icon_1:addEventListener("touch", icon_1)
+feedIcon:addEventListener("touch", feedIcon)
+
 
 
 
