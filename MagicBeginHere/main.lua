@@ -12,11 +12,13 @@ display.setStatusBar(display.HiddenStatusBar)
 -- Hide android navigation bar
 native.setProperty( "androidSystemUiVisibility", "immersiveSticky" )
 
+-- Import dependency
+local widget = require( "widget" )
 
 
 -- Set Title
 local titleOption = {
-	text = "Tamagotchi v0.11",
+	text = "Tamagotchi v0.13",
 	x = display.contentCenterX,
 	y = 24,
 	fontSize = 24,
@@ -78,6 +80,44 @@ function default(event)
 	anime:play()
 end
 
+-- ===========================================================================
+-- Image sheet options and declaration
+-- For testing, you can copy/save the image under "Visual Customization" above
+local options = {
+    width = 64,
+    height = 64,
+    numFrames = 6,
+    sheetContentWidth = 384,
+    sheetContentHeight = 64
+}
+local progressSheet = graphics.newImageSheet( "widget-progress-view.png", options )
+
+-- Create the widget
+local progressView = widget.newProgressView(
+    {
+        sheet = progressSheet,
+        --fillOuterLeftFrame = 1,
+        fillOuterMiddleFrame = 2,
+        --fillOuterRightFrame = 3,
+        fillOuterWidth = 0,
+        fillOuterHeight = 10,
+        --fillInnerLeftFrame = 4,
+        fillInnerMiddleFrame = 5,
+        --fillInnerRightFrame = 6,
+        fillWidth = 0,
+        fillHeight = 10,
+        left = display.contentCenterX - 50,
+        top = 50,
+        width = 100,
+        isAnimated = true
+    }
+)
+
+-- Set the progress to 50%
+progressView:setProgress( 0.5 )
+-- ===========================================================================
+
+
 -- =====================
 
 -- Set Icons
@@ -122,6 +162,7 @@ function icon_1:touch(event)
 		anime:setSequence("happy")
 		anime:play()
 		timer.performWithDelay(1600, default) -- reset animation to default
+		progressView:setProgress(progressView:getProgress() + 0.1)
 		hideShowIcons()
 		return true
 	end
@@ -130,6 +171,9 @@ end
 -- Add even listener for touch event on anime
 anime:addEventListener("touch", anime)
 icon_1:addEventListener("touch", icon_1)
+
+
+
 
 
 
