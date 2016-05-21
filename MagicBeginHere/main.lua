@@ -194,7 +194,7 @@ function needs()
 end
 
 -- Add hunger loop
-timer.performWithDelay(3000, needs, -1)
+timer.performWithDelay(20000, needs, -1)
 
 -- Add even listener for touch event on anime
 anime:addEventListener("touch", anime)
