@@ -53,13 +53,13 @@ background:play()
 
 -- Set Tamagotchi
 local tamagotchiOption = {
-
 	width = 300,
 	height = 300,
 	numFrames = 16,
 
 	sheetContentWidth = 2400,
 	sheetContentHeight = 600,
+
 
 
 }
@@ -83,9 +83,8 @@ local sequence = {
 		time = 1600,
 		loopcount = 0,
 		loopdirection = "forward"
-	},
+	}
 }
-
 
 -- Setuo anime location
 local anime = display.newSprite(tamagotchi, sequence)
@@ -185,30 +184,6 @@ function feedIcon:touch(event)
 		timer.performWithDelay(1600, default) -- reset animation to default
 		hunger:setProgress(hunger:getProgress() + 0.1)
 		hideShowIcons()
-
--- Setuo anime location
-
-local anime = display.newSprite(tamagotchi, sequence)
-anime.x = display.contentCenterX
-anime.y = 225
-anime:scale(0.5, 0.5)
-anime:play()
-
-
--- Set default animation
-function default(event)
-	anime:setSequence("normal")
-	anime:play()
-end
-
--- Set interaction when touch
-function anime:touch(event)
-	if event.phase == "began" then
-
-		anime:setSequence("happy")
-		anime:play()
-		timer.performWithDelay(1600, default) -- reset animation to default
-
 		return true
 	end
 end
@@ -216,14 +191,12 @@ end
 -- Trigger needs
 function needs()
 	hunger:setProgress(hunger:getProgress() - 0.1)
-
+end
 
 -- Add hunger loop
 timer.performWithDelay(20000, needs, -1)
 
 -- Add even listener for touch event on anime
-
-
 anime:addEventListener("touch", anime)
 feedIcon:addEventListener("touch", feedIcon)
 
