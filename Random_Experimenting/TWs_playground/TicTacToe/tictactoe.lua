@@ -5,8 +5,8 @@ display.setStatusBar(display.HiddenStatusBar)
 
 -- SETUP BACKGROUND
 local background = display.newImage("background2.png")
-background:scale(2.0,1.8)--"letterbox")
-background.anchorX = -8
+background:scale(.6,.5)--"letterbox")
+background.anchorX = 0
 background.anchorY = -5
 
 local _H = display.contentHeight
@@ -41,12 +41,12 @@ textBox.isVisible = false
 
 -----------------------------------------------
 --ADD SQUARE GRIDS TO CONTROL CLICKS
-local distanceApart = 300
+local distanceApart = 100
 local blank = "blank.png"
 --[ middle row ]--
 local button22 = display.newImage(blank)
-button22.x = _W / 2
-button22.y = (_H / 2) + 50
+button22.x = _W / 2 + 50
+button22.y = (_H / 2)
 button22.state = "blank"
 local button21 = display.newImage(blank)
 button21.x = button22.x - distanceApart
@@ -138,12 +138,14 @@ function play(event)
 		if event.phase == "ended" then
 			if modulo == 0 then
 				local button = display.newImage("naught.png")
+				button:scale(.3,.3)
 				button.x = event.target.x
 				button.y = event.target.y
 				event.target.state = "naught"
 				clicked = clicked + 1
 			else
 				local button = display.newImage("cross.png")
+				button:scale(.3,.3)
 				button.x = event.target.x
 				button.y = event.target.y
 				event.target.state = "cross"
