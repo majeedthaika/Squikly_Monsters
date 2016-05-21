@@ -23,11 +23,16 @@ function scene:create( event )
 
     local sceneGroup = self.view
 
+    -- Setup layer
+    local back = display.newGroup()
+    local middle = display.newGroup()
+    local front = display.newGroup()
+
     -- Set title (Will be remove later)
     local title = setUpTitle("Tamagotchi v0.15")
 
     -- Set background
-    --background = setUpBackground("bg.png")
+    background = setUpBackground("bg.png")
 
     -- Set Tama 
     local tama = setUpTama("egg.png")
@@ -64,9 +69,22 @@ function scene:create( event )
         hunger:setProgress(hunger:getProgress() - 0.1)
     end
 
+
+    -- Add display objects into group
+    -- ============BACK===============
+    back:insert(background)
+    back:insert(feedIcon)
+
+    -- ===========MIDDLE==============
+    middle:insert(tama)
+
+    -- ===========FRONT===============
+    front:insert(hunger)
+
+    -- ===============================
+
     -- Add hunger loop
     timer.performWithDelay(20000, needs, -1)
-
     -- Add even listener for touch event on tama
     tama:addEventListener("touch", tama)
     feedIcon:addEventListener("touch", feedIcon)
